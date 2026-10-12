@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CareConnect | Book Doctors Online &amp; Offline, Video Consultations</title>
+  <meta name="description" content="CareConnect: find doctors, book online video or offline clinic appointments, get offline tokens and appointment alerts. Works as a website and an installable app." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CareConnect" />
+  <meta property="og:title" content="CareConnect | Healthcare Appointments" />
+  <meta property="og:description" content="Book doctors online or offline, join live video consultations, and get appointment alerts." />
+  <meta property="og:image" content="icon-512.png" />
+  <meta name="twitter:card" content="summary" />
+  <!--SEO-->
+  <meta name="theme-color" content="#146b62" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CareConnect" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="netBanner" class="net-banner hidden" role="status"></div>
+  <noscript><p style="padding:24px;font-family:sans-serif">CareConnect needs JavaScript. Please enable it in your browser.</p></noscript>
+
+  <section id="authView" class="auth-page">
+    <div class="auth-brand">
+      <a class="brand"><span class="brand-mark">✚</span> CareConnect</a>
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR HEALTH, SIMPLIFIED</p>
+        <h1>Care that fits<br />your life.</h1>
+        <p>Find doctors, choose online or offline appointments, get an offline token, and use the CareConnect AI Assistant for general healthcare information.</p>
+      </div>
+      <div class="feature-pills"><span>✓ Easy booking</span><span>✓ Video + chat</span><span>✓ Offline tokens</span><span>✓ AI assistance</span></div>
+      <button id="installBtnAuth" data-install class="install-btn hidden" type="button"><span class="install-icon">⬇</span> Install CareConnect app</button>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-card">
+        <p class="eyebrow">WELCOME TO CARECONNECT</p>
+        <h2 id="authTitle">Welcome back</h2>
+        <p id="authSubtitle">Sign in as a Patient, Doctor, or Admin.</p>
+        <p id="modeNote" class="mode-note hidden"></p>
+
+        <form id="loginForm" class="auth-form">
+          <div class="role-picker" aria-label="Login role">
+            <label><input type="radio" name="loginRole" value="patient" checked /> <span>👤 Patient</span></label>
+            <label><input type="radio" name="loginRole" value="doctor" /> <span>👨‍⚕️ Doctor</span></label>
+            <label><input type="radio" name="loginRole" value="admin" /> <span>🛠️ Admin</span></label>
+          </div>
+          <label>Email<input id="loginEmail" type="email" placeholder="you@example.com" required /></label>
+          <label>Password<input id="loginPassword" type="password" placeholder="Enter your password" required /></label>
+          <button class="primary-btn" type="submit">Sign in <span>→</span></button>
+          <p class="form-switch">New to CareConnect? <button type="button" data-auth="signup">Create an account</button></p>
+          <div class="demo-box"><strong>Demo access</strong><br />Admin: <code>syed@gmail.com</code> / <code>Syed@7866</code><br />Doctor: <code>ramesh@gmail.com</code> / <code>2007</code><br /><small>Patients and additional doctors can create their own accounts.</small></div>
+        </form>
+
+        <form id="signupForm" class="auth-form hidden">
+          <div class="role-picker signup-role-picker" aria-label="Account type">
+            <label><input type="radio" name="signupRole" value="patient" checked /> <span>👤 Patient</span></label>
+            <label><input type="radio" name="signupRole" value="doctor" /> <span>👨‍⚕️ Doctor</span></label>
+          </div>
+          <p id="signupRoleHint" class="role-hint">Patient accounts can find doctors, book visits and use the AI assistant.</p>
+
+          <label>Full name<input id="signupName" type="text" placeholder="Your full name" required /></label>
+          <label>Email<input id="signupEmail" type="email" placeholder="you@example.com" required /></label>
+          <label>Phone<input id="signupPhone" type="tel" placeholder="98765 43210" required /></label>
+          <label>Password<input id="signupPassword" type="password" minlength="6" placeholder="Create a password (min 6 characters)" required /></label>
+
+          <div id="patientSignupFields" class="patient-signup-fields">
+            <div class="form-grid">
+              <label class="field">Age<input id="signupAge" name="signupAge" type="number" min="0" max="120" placeholder="Age"></label>
+              <label class="field">Gender<select id="signupGender" name="signupGender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+              <label class="field">Blood group<input id="signupBloodGroup" name="signupBloodGroup" placeholder="e.g. B+"></label>
+              <label class="field">Emergency contact<input id="signupEmergency" name="signupEmergency" placeholder="Phone number"></label>
+              <label class="field full">Address<input id="signupAddress" name="signupAddress" placeholder="City / address"></label>
+            </div>
+          </div>
+
+          <div id="doctorSignupFields" class="doctor-signup-fields hidden">
+            <div class="form-grid">
+              <label class="field">Specialty<input id="signupSpecialty" name="signupSpecialty" placeholder="e.g. Cardiologist"></label>
+              <label class="field">Experience<input id="signupExperience" name="signupExperience" placeholder="e.g. 5 years"></label>
+              <label class="field">Consultation fee (₹)<input id="signupFee" name="signupFee" type="number" min="0" value="500"></label>
+              <label class="field">Available days<input id="signupAvailability" name="signupAvailability" placeholder="Mon, Wed, Fri" value="Mon, Wed, Fri"></label>
+              <label class="field full">Time slots<input id="signupSlots" name="signupSlots" placeholder="09:00, 11:00, 16:00" value="09:00, 11:00, 16:00"></label>
+            </div>
+          </div>
+
+          <button class="primary-btn" type="submit">Create account <span>→</span></button>
+          <p class="form-switch">Already registered? <button type="button" data-auth="login">Sign in</button></p>
+          <div class="signup-note">Doctor accounts are linked to the doctor directory automatically, so the same saved profile appears to patients and in the Doctor login.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="appView" class="app hidden">
+    <aside class="sidebar">
+      <a class="brand"><span class="brand-mark">✚</span> CareConnect</a>
+      <div class="user-mini"><div id="avatar" class="avatar">P</div><div><strong id="sidebarName">Patient</strong><small id="sidebarRole">Patient portal</small></div></div>
+      <nav id="sideNav"></nav>
+      <button id="installBtnSidebar" data-install class="install-btn sidebar-install hidden" type="button"><span class="install-icon">⬇</span> Install app</button>
+      <button id="logoutBtn" class="logout-btn">↪ <span>Log out</span></button>
+      <p class="sidebar-footer">CareConnect v3.0<br />Live video · Tokens · Alerts · AI</p>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div><p id="pageKicker" class="eyebrow">PATIENT PORTAL</p><h2 id="pageTitle">Dashboard</h2></div>
+        <div class="top-actions"><button id="installBtnTop" data-install class="install-btn top-install hidden" type="button">⬇ Install</button><button id="notificationBtn" class="notification-top-btn">🔔 Notifications</button><span id="todayDate"></span><div id="topAvatar" class="avatar small">P</div><button id="mobileLogout" class="mobile-logout" type="button" aria-label="Log out">↪</button></div>
+      </header>
+      <div id="pageContent"></div>
+    </main>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Main"></nav>
+  </section>
+
+  <div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="close">×</button><div id="modalContent"></div></div></div>
+  <script src="shared.js?v=12" defer></script>
+  <script src="app.js?v=12" defer></script>
+</body>
+</html>

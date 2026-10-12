@@ -1,0 +1,25 @@
+{
+  "name": "CareConnect Healthcare Appointments",
+  "short_name": "CareConnect",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f8f5",
+  "theme_color": "#146b62",
+  "description": "Book doctors online or offline, join live video consultations and get appointment alerts. Patient, Doctor and Admin portals.",
+  "categories": ["health", "medical", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "icon-64.png", "sizes": "64x64", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "My appointments", "short_name": "Appointments", "url": "./index.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}
